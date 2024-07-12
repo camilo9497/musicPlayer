@@ -1,25 +1,19 @@
 import React from 'react';
-import {ScrollView} from 'react-native';
+import {FlatList} from 'react-native';
 import CardMusic from '../CardMusic';
+import {Songs} from '../../types.ts/types';
 
 interface Props {
-  data?: any;
+  songs: Songs;
 }
 
-const CardList: React.FC<Props> = ({data={}}) => {
+const CardList: React.FC<Props> = ({songs}) => {
   return (
-    <ScrollView style={{height: '100%'}}>
-      <CardMusic />
-      <CardMusic />
-      <CardMusic />
-      <CardMusic />
-      <CardMusic />
-      <CardMusic />
-      <CardMusic />
-      <CardMusic />
-      <CardMusic />
-      <CardMusic />
-    </ScrollView>
+    <FlatList
+      data={songs.track}
+      keyExtractor={item => item.mbid}
+      renderItem={item => <CardMusic song={item} />}
+    />
   );
 };
 

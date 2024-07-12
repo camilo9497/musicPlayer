@@ -14,8 +14,11 @@ export const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 4,
-    backgroundColor: 'gray',
     marginRight: 8,
+  },
+  image: {
+    width: '100%',
+    height: '100%',
   },
   containerInfo: {
     flexDirection: 'row',
