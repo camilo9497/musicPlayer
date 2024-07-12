@@ -6,6 +6,7 @@ import HomeScreen from './screens/HomeScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import {colors} from './utils/colors';
 import {StatusBar} from 'react-native';
+import SongDetailScreen from './screens/SongDetailScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -29,6 +30,11 @@ function App(): React.JSX.Element {
             name="Perfil"
             component={ProfileScreen}
             options={{headerShown: false}}
+          />
+          <Tab.Screen
+            name="SongDetailScreen"
+            component={SongDetailScreen}
+            options={{tabBarButton: () => null, headerShown: false}}
           />
         </Tab.Navigator>
       </NavigationContainer>
