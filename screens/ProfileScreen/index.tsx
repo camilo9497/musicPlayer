@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import {Text, View} from 'react-native';
 import Background from '../../components/Background';
 import {styles} from './styles';
@@ -7,7 +7,6 @@ import CardList from '../../components/CardList';
 import useFetch from '../../hooks/useFetch';
 import {Songs, Track} from '../../types.ts/types';
 import {LatestSongsContext} from '../../context/latestSongsContext';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const NUM_SONGS = 20;
 const COUNTRY = 'colombia';
@@ -37,7 +36,12 @@ const ProfileScreen = () => {
       {/* <Text onPress={handleDeleteHistory}>Borrar listado</Text> */}
       <Text style={styles.subTitle}>Últimas canciones reproducidas</Text>
       <View style={styles.container}>
-        <CardList songs={lastestSongs} />
+        <CardList
+          songs={lastestSongs}
+          isLoading={isLoading}
+          error={error}
+          isProfile={true}
+        />
       </View>
     </Background>
   );

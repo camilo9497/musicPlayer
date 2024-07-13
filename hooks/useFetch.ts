@@ -3,13 +3,13 @@ import {useEffect, useState} from 'react';
 interface UseFetchResult<T> {
   data: T | null;
   isLoading: boolean;
-  error: Error | null;
+  error: boolean | null;
 }
 
 function useFetch<T>(url: string): UseFetchResult<T> {
   const [data, setData] = useState<T | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<Error | null>(null);
+  const [error, setError] = useState<boolean | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,7 +22,7 @@ function useFetch<T>(url: string): UseFetchResult<T> {
         const result = await response.json();
         setData(result.tracks);
       } catch (err) {
-        setError(err as Error);
+        setError(true);
       } finally {
         setIsLoading(false);
       }

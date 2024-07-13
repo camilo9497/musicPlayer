@@ -9,7 +9,6 @@ import BackwardIcons from '../../icons/backwardIcon';
 import PauseIcon from '../../icons/pauseIcon';
 import PlayIcon from '../../icons/playIcon';
 import {LatestSongsContext} from '../../context/latestSongsContext';
-LatestSongsContext;
 
 const SongDetailScreen = ({route}) => {
   const navigation = useNavigation();
