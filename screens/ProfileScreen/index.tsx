@@ -24,9 +24,9 @@ const ProfileScreen = () => {
     })
     .filter(track => track) as Track[];
 
-  const handleDeleteHistory = () => {
-    AsyncStorage.clear();
-  };
+  // const handleDeleteHistory = () => {
+  //   AsyncStorage.clear();
+  // };
 
   return (
     <Background>
@@ -34,7 +34,7 @@ const ProfileScreen = () => {
       <View style={styles.containerAvatar}>
         <Avatar />
       </View>
-      <Text onPress={handleDeleteHistory}>Borrar listado</Text>
+      {/* <Text onPress={handleDeleteHistory}>Borrar listado</Text> */}
       <Text style={styles.subTitle}>Últimas canciones reproducidas</Text>
       <View style={styles.container}>
         <CardList songs={lastestSongs} />
