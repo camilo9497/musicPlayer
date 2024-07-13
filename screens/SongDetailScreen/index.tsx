@@ -1,8 +1,8 @@
-import React, {useContext, useState} from 'react';
+import React, {useCallback, useContext, useState} from 'react';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
 import Background from '../../components/Background';
 import {Track} from '../../types.ts/types';
-import {useNavigation} from '@react-navigation/native';
+import {useFocusEffect, useNavigation} from '@react-navigation/native';
 import {styles} from './styles';
 import ForwardIcon from '../../icons/forwardIcon';
 import BackwardIcons from '../../icons/backwardIcon';
@@ -21,6 +21,12 @@ const SongDetailScreen = ({route}) => {
     setIsPlaying(!isPlaying);
     saveLastesSong(song);
   };
+
+  useFocusEffect(
+    useCallback(() => {
+      return () => setIsPlaying(false);
+    }, []),
+  );
 
   return (
     <Background>
