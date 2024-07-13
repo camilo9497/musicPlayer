@@ -9,6 +9,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: 5,
+    justifyContent: 'space-around',
   },
   containerImage: {
     width: 80,
@@ -24,11 +25,6 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '65%',
-  },
-  containerIconFav: {
-    position: 'absolute',
-    top: 10,
-    right: 10,
   },
   songName: {
     color: colors.white,

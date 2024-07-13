@@ -3,6 +3,7 @@ import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {styles} from './styles';
 import {TrackFlatList} from '../../types.ts/types';
 import {useNavigation} from '@react-navigation/native';
+import PlayIcon from '../../icons/playIcon';
 
 interface Props {
   song: TrackFlatList;
@@ -23,7 +24,6 @@ const CardMusic: React.FC<Props> = ({song}) => {
       <View style={styles.containerInfo}>
         <View>
           <View>
-            {/* <Icon /> */}
             <Text style={styles.listeners}>{item.listeners}</Text>
           </View>
           <Text style={styles.songName}>{item.name}</Text>
@@ -31,9 +31,7 @@ const CardMusic: React.FC<Props> = ({song}) => {
           <Text style={styles.text}>{item.duration}</Text>
         </View>
       </View>
-      <View style={styles.containerIconFav}>
-        <Text>Icon</Text>
-      </View>
+      <PlayIcon />
     </TouchableOpacity>
   );
 };
