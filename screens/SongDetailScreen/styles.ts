@@ -38,4 +38,40 @@ export const styles = StyleSheet.create({
   text: {
     color: colors.gray,
   },
+  containerRepr: {
+    width: '100%',
+    marginTop: 30,
+  },
+
+  containerProgress: {
+    width: '100%',
+    alignItems: 'center',
+  },
+  progress: {
+    color: colors.buttonPrincipal,
+  },
+  containerButtons: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
+    justifyContent: 'center',
+    gap: 20,
+    marginTop: 40,
+  },
+  containerButtonPrimary: {
+    backgroundColor: colors.buttonPrincipal,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  containerButtonSecondary: {
+    backgroundColor: colors.gray,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 });

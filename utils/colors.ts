@@ -3,4 +3,5 @@ export const colors = {
   gray: '#aba7a7',
   principalBlue: '#152239',
   secondaryBlue: '#1b2c4a',
+  buttonPrincipal: '#ED7392',
 };
