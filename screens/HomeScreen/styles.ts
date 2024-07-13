@@ -1,4 +1,4 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import {StyleSheet, Dimensions, Platform} from 'react-native';
 import {colors} from '../../utils/colors';
 
 const {height} = Dimensions.get('window');
@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
     marginVertical: 20,
   },
   constainerList: {
-    height: height - 190,
+    height: Platform.OS === 'ios' ? height - 190 : height - 135,
     paddingHorizontal: 5,
   },
 });
