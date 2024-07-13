@@ -11,7 +11,7 @@ import PlayIcon from '../../icons/playIcon';
 
 const SongDetailScreen = ({route}) => {
   const navigation = useNavigation();
-  const song: Track = route.params.item;
+  const song: Track = route.params.song;
   const ranking = Number(song['@attr'].rank) + 1;
   const [isPlaying, setIsPlaying] = useState(true);
 

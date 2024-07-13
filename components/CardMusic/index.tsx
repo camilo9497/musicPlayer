@@ -1,34 +1,33 @@
-import React from 'react';
-import {Image, Text, TouchableOpacity, View} from 'react-native';
+import React, {useEffect, useRef} from 'react';
+import {Animated, Image, Text, TouchableOpacity, View} from 'react-native';
 import {styles} from './styles';
-import {TrackFlatList} from '../../types.ts/types';
+import {Track} from '../../types.ts/types';
 import {useNavigation} from '@react-navigation/native';
 import PlayIcon from '../../icons/playIcon';
 
 interface Props {
-  song: TrackFlatList;
+  song: Track;
 }
 
 const CardMusic: React.FC<Props> = ({song}) => {
-  const {item} = song;
   const navigation = useNavigation();
   const handlePress = () => {
-    navigation.navigate('SongDetailScreen', {item});
+    navigation.navigate('SongDetailScreen', {song});
   };
 
   return (
     <TouchableOpacity style={styles.container} onPress={handlePress}>
       <View style={styles.containerImage}>
-        <Image style={styles.image} source={{uri: item.image[0]['#text']}} />
+        <Image style={styles.image} source={{uri: song?.image[0]['#text']}} />
       </View>
       <View style={styles.containerInfo}>
         <View>
           <View>
-            <Text style={styles.listeners}>{item.listeners}</Text>
+            <Text style={styles.listeners}>{song?.listeners}</Text>
           </View>
-          <Text style={styles.songName}>{item.name}</Text>
-          <Text style={styles.text}>{item.artist?.name}</Text>
-          <Text style={styles.text}>{item.duration}</Text>
+          <Text style={styles.songName}>{song?.name}</Text>
+          <Text style={styles.text}>{song?.artist?.name}</Text>
+          <Text style={styles.text}>{song?.duration}</Text>
         </View>
       </View>
       <PlayIcon />
@@ -37,3 +36,22 @@ const CardMusic: React.FC<Props> = ({song}) => {
 };
 
 export default CardMusic;
+
+export const AmimatedCard = ({song, index}) => {
+  const opacity = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.timing(opacity, {
+      toValue: 1,
+      duration: 250,
+      delay: index * 100,
+      useNativeDriver: true,
+    }).start();
+  }, [opacity, index]);
+
+  return (
+    <Animated.View style={{opacity}}>
+      <CardMusic song={song} />
+    </Animated.View>
+  );
+};
