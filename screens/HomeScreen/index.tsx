@@ -28,7 +28,7 @@ function HomeScreen() {
     <Background>
       <Text style={styles.title}>{`Top ${NUM_SONGS} ${COUNTRY}`}</Text>
       <View style={styles.constainerList}>
-        {data && <CardList songs={data} />}
+        {data && <CardList songs={data.track} />}
       </View>
     </Background>
   );

@@ -1,20 +1,43 @@
-import React from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Text, View} from 'react-native';
 import Background from '../../components/Background';
 import {styles} from './styles';
 import Avatar from '../../components/Avatar';
 import CardList from '../../components/CardList';
+import useFetch from '../../hooks/useFetch';
+import {Songs, Track} from '../../types.ts/types';
+import {LatestSongsContext} from '../../context/latestSongsContext';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const NUM_SONGS = 20;
+const COUNTRY = 'colombia';
+const API_KEY = 'c19c47264b0dfd0973d63aa54cb6788c';
+const URL_API = `https://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=${COUNTRY}&api_key=${API_KEY}&format=json&limit=${NUM_SONGS}`;
 
 const ProfileScreen = () => {
+  const {data, error, isLoading} = useFetch<Songs>(URL_API);
+  const {lastestSongsIds} = useContext(LatestSongsContext);
+
+  const lastestSongs = lastestSongsIds
+    .map(id => {
+      return data?.track.find(track => track.name + track.artist.name === id);
+    })
+    .filter(track => track) as Track[];
+
+  const handleDeleteHistory = () => {
+    AsyncStorage.clear();
+  };
+
   return (
     <Background>
       <Text style={styles.title}>Mi perfil</Text>
       <View style={styles.containerAvatar}>
         <Avatar />
       </View>
+      <Text onPress={handleDeleteHistory}>Borrar listado</Text>
       <Text style={styles.subTitle}>Últimas canciones reproducidas</Text>
       <View style={styles.container}>
-        <CardList />
+        <CardList songs={lastestSongs} />
       </View>
     </Background>
   );

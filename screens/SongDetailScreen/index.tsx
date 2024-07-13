@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
 import Background from '../../components/Background';
 import {Track} from '../../types.ts/types';
@@ -8,12 +8,20 @@ import ForwardIcon from '../../icons/forwardIcon';
 import BackwardIcons from '../../icons/backwardIcon';
 import PauseIcon from '../../icons/pauseIcon';
 import PlayIcon from '../../icons/playIcon';
+import {LatestSongsContext} from '../../context/latestSongsContext';
+LatestSongsContext;
 
 const SongDetailScreen = ({route}) => {
   const navigation = useNavigation();
   const song: Track = route.params.song;
   const ranking = Number(song['@attr'].rank) + 1;
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const {saveLastesSong} = useContext(LatestSongsContext);
+
+  const handlePressPrincipalButton = () => {
+    setIsPlaying(!isPlaying);
+    saveLastesSong(song);
+  };
 
   return (
     <Background>
@@ -32,7 +40,9 @@ const SongDetailScreen = ({route}) => {
         </View>
         <View style={styles.containerRepr}>
           <View style={styles.containerProgress}>
-            <Text style={styles.progress}>___________________________________</Text>
+            <Text style={styles.progress}>
+              ___________________________________
+            </Text>
           </View>
           <View style={styles.containerButtons}>
             <TouchableOpacity
@@ -40,12 +50,12 @@ const SongDetailScreen = ({route}) => {
               <BackwardIcons />
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => setIsPlaying(!isPlaying)}
+              onPress={handlePressPrincipalButton}
               style={{
                 ...styles.containerButtonPrimary,
-                paddingLeft: isPlaying ? 5 : 0,
+                paddingLeft: !isPlaying ? 5 : 0,
               }}>
-              {isPlaying ? <PlayIcon /> : <PauseIcon />}
+              {!isPlaying ? <PlayIcon /> : <PauseIcon />}
             </TouchableOpacity>
             <TouchableOpacity
               style={{...styles.containerButtonSecondary, paddingLeft: 6}}>

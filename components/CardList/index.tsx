@@ -1,16 +1,16 @@
 import React from 'react';
 import {FlatList} from 'react-native';
 import {AmimatedCard} from '../CardMusic';
-import {Songs} from '../../types.ts/types';
+import {Track} from '../../types.ts/types';
 
 interface Props {
-  songs: Songs;
+  songs: Track[];
 }
 
 const CardList: React.FC<Props> = ({songs}) => {
   return (
     <FlatList
-      data={songs.track}
+      data={songs}
       keyExtractor={item => item.mbid}
       renderItem={({item, index}) => <AmimatedCard song={item} index={index} />}
     />
