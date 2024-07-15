@@ -8,6 +8,10 @@ import {colors} from './utils/colors';
 import {StatusBar} from 'react-native';
 import SongDetailScreen from './screens/SongDetailScreen';
 import {LatestSongsProvider} from './context/latestSongsContext';
+import PlayIcon from './icons/playIcon';
+import ForwardIcon from './icons/forwardIcon';
+import HomeIcon from './icons/homeIcon';
+import ProfileIcon from './icons/profileIcon';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,11 +22,22 @@ function App(): React.JSX.Element {
       <LatestSongsProvider>
         <NavigationContainer>
           <Tab.Navigator
-            screenOptions={{
+            screenOptions={({route}) => ({
               tabBarStyle: {backgroundColor: '#0e1726'},
               tabBarActiveTintColor: colors.white,
               tabBarInactiveTintColor: colors.gray,
-            }}>
+              tabBarIcon: ({color}) => {
+                console.log('route', route);
+                
+                if (route.name === 'Inicio') {
+                  return <HomeIcon color={color} />;
+                } else if (route.name === 'Perfil') {
+                  return <ProfileIcon color={color} />;
+                }
+
+                return <HomeIcon color={color} />;
+              },
+            })}>
             <Tab.Screen
               name="Inicio"
               component={HomeScreen}
