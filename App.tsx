@@ -8,8 +8,6 @@ import {colors} from './utils/colors';
 import {StatusBar} from 'react-native';
 import SongDetailScreen from './screens/SongDetailScreen';
 import {LatestSongsProvider} from './context/latestSongsContext';
-import PlayIcon from './icons/playIcon';
-import ForwardIcon from './icons/forwardIcon';
 import HomeIcon from './icons/homeIcon';
 import ProfileIcon from './icons/profileIcon';
 
@@ -27,8 +25,6 @@ function App(): React.JSX.Element {
               tabBarActiveTintColor: colors.white,
               tabBarInactiveTintColor: colors.gray,
               tabBarIcon: ({color}) => {
-                console.log('route', route);
-                
                 if (route.name === 'Inicio') {
                   return <HomeIcon color={color} />;
                 } else if (route.name === 'Perfil') {
