@@ -13,6 +13,7 @@ interface Props {
 }
 
 interface ContextProps {
+  removeLastesSongs: () => void;
   saveLastesSong: (song: Track) => void;
   lastestSongsIds: string[];
 }
@@ -48,7 +49,13 @@ export const LatestSongsProvider: React.FC<Props> = ({children}) => {
       // setLatestSongsIds(Array.from(new Set(lastestSongsIds).add(id)));
     };
 
+    const removeLastesSongs = () => {
+      AsyncStorage.clear();
+      setLatestSongsIds([]);
+    };
+
     return {
+      removeLastesSongs,
       saveLastesSong,
       lastestSongsIds,
     };

@@ -35,4 +35,10 @@ export const styles = StyleSheet.create({
     borderTopRightRadius: 40,
     borderTopLeftRadius: 40,
   },
+  removeHistory: {
+    color: colors.gray,
+    fontSize: 16,
+    textAlign: 'right',
+    paddingRight: 15,
+  },
 });

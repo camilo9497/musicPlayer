@@ -15,7 +15,7 @@ const URL_API = `https://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&coun
 
 const ProfileScreen = () => {
   const {data, error, isLoading} = useFetch<Songs>(URL_API);
-  const {lastestSongsIds} = useContext(LatestSongsContext);
+  const {lastestSongsIds, removeLastesSongs} = useContext(LatestSongsContext);
 
   const lastestSongs = lastestSongsIds
     .map(id => {
@@ -23,9 +23,9 @@ const ProfileScreen = () => {
     })
     .filter(track => track) as Track[];
 
-  // const handleDeleteHistory = () => {
-  //   AsyncStorage.clear();
-  // };
+  const handleDeleteHistory = () => {
+    removeLastesSongs();
+  };
 
   return (
     <Background>
@@ -33,8 +33,12 @@ const ProfileScreen = () => {
       <View style={styles.containerAvatar}>
         <Avatar />
       </View>
-      {/* <Text onPress={handleDeleteHistory}>Borrar listado</Text> */}
       <Text style={styles.subTitle}>Últimas canciones reproducidas</Text>
+      {lastestSongsIds.length > 1 && (
+        <Text style={styles.removeHistory} onPress={handleDeleteHistory}>
+          Borrar historial
+        </Text>
+      )}
       <View style={styles.container}>
         <CardList
           songs={lastestSongs}
